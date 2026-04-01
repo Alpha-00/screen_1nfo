@@ -41,10 +41,7 @@ final _router = GoRouter(
               label: 'Listener Test',
               icon: Icon(Icons.touch_app),
             ),
-            NavigationDestination(
-              label: 'Setting',
-              icon: Icon(Icons.settings),
-            ),
+            NavigationDestination(label: 'Setting', icon: Icon(Icons.settings)),
           ],
           onDestinationSelected: (index) {
             navigationShell.goBranch(
@@ -63,18 +60,22 @@ final _router = GoRouter(
             ),
           ],
         ),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: '/listener',
-            builder: (context, state) => const ListenerScreen(),
-          ),
-        ]),
-        StatefulShellBranch(routes: [
-          GoRoute(
-            path: '/settings',
-            builder: (context, state) => const MySettingsScreen(),
-          ),
-        ])
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/listener',
+              builder: (context, state) => const ListenerScreen(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/settings',
+              builder: (context, state) => const MySettingsScreen(),
+            ),
+          ],
+        ),
       ],
     ),
   ],
@@ -93,6 +94,7 @@ class MyApp extends StatelessWidget {
             return MaterialApp.router(
               title: 'Flutter Demo',
               theme: state.themeData,
+              themeAnimationCurve: Curves.bounceOut,
               routerConfig: _router,
               debugShowCheckedModeBanner: false,
             );
@@ -104,9 +106,7 @@ class MyApp extends StatelessWidget {
 }
 
 void _showTalkerScreen(BuildContext context) {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => TalkerScreen(talker: talker),
-    ),
-  );
+  Navigator.of(
+    context,
+  ).push(MaterialPageRoute(builder: (context) => TalkerScreen(talker: talker)));
 }
